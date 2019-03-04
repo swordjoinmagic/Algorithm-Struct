@@ -15,13 +15,13 @@ public class MakeBinaryTree {
         List<Character> font = new ArrayList<>(Arrays.asList('A','B','D','G','C','E','F','H'));
         List<Character> middle = new ArrayList<>(Arrays.asList('D','G','B','A','E','C','H','F'));
 
-        BinaryNode node =  makeBinaryTree.MakeTree(font,middle);
+        BinaryTreeNode node =  makeBinaryTree.MakeTree(font,middle);
         makeBinaryTree.BackPrint(node);
 
     }
 
     // 打印一个二叉树的后序遍历
-    public void BackPrint(BinaryNode node){
+    public void BackPrint(BinaryTreeNode node){
         if(node!=null){
             // 左
             BackPrint(node.left);
@@ -39,7 +39,7 @@ public class MakeBinaryTree {
      * @param <T>
      * @return
      */
-    public <T> BinaryNode<T> MakeTree(List<T> font, List<T> middle){
+    public <T> BinaryTreeNode<T> MakeTree(List<T> font, List<T> middle){
 
         System.out.println("=======================");
         System.out.println("Font:"+font+"\n middle:"+middle);
@@ -47,7 +47,7 @@ public class MakeBinaryTree {
         if(font==null || font.size()<=0) return null;
 
         // 得到根
-        BinaryNode<T> root = new BinaryNode<T>(font.get(0));
+        BinaryTreeNode<T> root = new BinaryTreeNode<T>(font.get(0));
 
         if(font.size()<=1) return root;
 

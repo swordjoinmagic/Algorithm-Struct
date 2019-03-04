@@ -1,7 +1,5 @@
 package review.Tree;
 
-import java.lang.reflect.Parameter;
-
 /**
  * 二叉搜索树(又称二叉排序树)节点的查找/插入/删除
  */
@@ -12,15 +10,15 @@ public class BinarySortTree {
         BinarySortTree sortTree = new BinarySortTree();
         Integer[] nums = {54,18,12,36,6,81,76,99,57,66,20,19};
 
-        BinaryNode<Integer> root = sortTree.makeBinarySortTree(nums);
+        BinaryTreeNode<Integer> root = sortTree.makeBinarySortTree(nums);
 
         sortTree.Delete(root,54);
 
-        BinaryNode.MiddlePrint(root);
+        BinaryTreeNode.MiddlePrint(root);
 
         System.out.println();
 
-        BinaryNode.FrontPrint(root);
+        BinaryTreeNode.FrontPrint(root);
 
     }
 
@@ -29,8 +27,8 @@ public class BinarySortTree {
      * @param num
      * @return
      */
-    public BinaryNode<Integer> makeBinarySortTree(Integer[] nums){
-        BinaryNode<Integer> root = null;
+    public BinaryTreeNode<Integer> makeBinarySortTree(Integer[] nums){
+        BinaryTreeNode<Integer> root = null;
         for(int i=0;i<nums.length;i++){
             root = Insert(root,nums[i]);
         }
@@ -43,20 +41,20 @@ public class BinarySortTree {
      * @param data
      * @return
      */
-    public BinaryNode<Integer> Insert(BinaryNode<Integer> root,Integer data){
+    public BinaryTreeNode<Integer> Insert(BinaryTreeNode<Integer> root, Integer data){
 
         if(root==null)
             // 直接新建节点返回
-            return new BinaryNode<>(data);
+            return new BinaryTreeNode<>(data);
 
         // 查找到插入该节点的位置
-        BinaryNode<Integer> node = root;
+        BinaryTreeNode<Integer> node = root;
 
         while (true) {
             if (node.data < data) {
                 if(node.right==null) {
                     // 插入该节点,新节点的父亲节点是node
-                    node.right = new BinaryNode<Integer>(data,node);
+                    node.right = new BinaryTreeNode<Integer>(data,node);
                     return root;
                 }
                 // 右节点
@@ -64,7 +62,7 @@ public class BinarySortTree {
             } else {
                 if(node.left==null) {
                     // 插入该节点,新节点的父亲节点是node
-                    node.left = new BinaryNode<>(data,node);
+                    node.left = new BinaryTreeNode<>(data,node);
                     return root;
                 }
                 // 左节点
@@ -77,8 +75,8 @@ public class BinarySortTree {
      * 查找二叉搜索树中的某一节点
      * @return
      */
-    public BinaryNode<Integer> Find(BinaryNode<Integer> root,Integer data){
-        BinaryNode<Integer> node = root;
+    public BinaryTreeNode<Integer> Find(BinaryTreeNode<Integer> root, Integer data){
+        BinaryTreeNode<Integer> node = root;
 
         while (node != null) {
             if (data > node.data) {
@@ -114,9 +112,9 @@ public class BinarySortTree {
      * @param data
      * @return
      */
-    public BinaryNode<Integer> Delete(BinaryNode<Integer> root,Integer data){
+    public BinaryTreeNode<Integer> Delete(BinaryTreeNode<Integer> root, Integer data){
         // 第一步,找到要删除的节点
-        BinaryNode<Integer> node = Find(root,data);
+        BinaryTreeNode<Integer> node = Find(root,data);
 
         // 判断该节点的度数
         if(node.left==null && node.right==null){
@@ -144,7 +142,7 @@ public class BinarySortTree {
             }else {
                 // 使用点p左孩子最右边的子孙节点代替点p(即左孩子中值最大的数)
                 // 找到insucc节点
-                BinaryNode<Integer> insucc = node.left;
+                BinaryTreeNode<Integer> insucc = node.left;
                 while (insucc.right!=null){
                     insucc = insucc.right;
                 }

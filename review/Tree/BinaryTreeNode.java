@@ -3,14 +3,14 @@ package review.Tree;
 /**
  * 二叉树的节点
  */
-public class BinaryNode<T> {
-    public BinaryNode<T> left,right;
-    public BinaryNode<T> parent;
+public class BinaryTreeNode<T> {
+    public BinaryTreeNode<T> left,right;
+    public BinaryTreeNode<T> parent;
     public T data;  // 该节点存的值
-    public BinaryNode(T data){
+    public BinaryTreeNode(T data){
         this.data = data;
     }
-    public BinaryNode(T data,BinaryNode parent){
+    public BinaryTreeNode(T data, BinaryTreeNode parent){
         this.data = data;
         this.parent = parent;
     }
@@ -18,7 +18,7 @@ public class BinaryNode<T> {
     /**
      * 中序遍历此二叉树
      */
-    public static void MiddlePrint(BinaryNode node){
+    public static void MiddlePrint(BinaryTreeNode node){
         if(node!=null){
             // 左
             MiddlePrint(node.left);
@@ -32,7 +32,7 @@ public class BinaryNode<T> {
     /**
      * 先序遍历此二叉树
      */
-    public static void FrontPrint(BinaryNode node){
+    public static void FrontPrint(BinaryTreeNode node){
         if(node!=null){
             // 根
             System.out.print(node.data+" ");
