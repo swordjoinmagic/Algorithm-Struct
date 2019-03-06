@@ -30,7 +30,7 @@ public class Problem1221拼出缘分 {
     public void Slove(int pos){
         if(pos==2*n){
             for(int data : array){
-                System.out.print(data+" ");
+                System.out.print(data);
             }
             System.out.println();
             return;
