@@ -2,9 +2,9 @@ package szptLesson.Recursion;
 
 import java.util.Scanner;
 
-public class Problem1221拼出缘分 {
+public class SzptProblem1221拼出缘分 {
     public static void main(String[] args){
-        Problem1221拼出缘分 problem1221 = new Problem1221拼出缘分();
+        SzptProblem1221拼出缘分 problem1221 = new SzptProblem1221拼出缘分();
         problem1221.Input();
         problem1221.Slove(0);
     }

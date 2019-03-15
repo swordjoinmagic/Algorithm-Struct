@@ -2,14 +2,14 @@ package szptLesson.Recursion;
 
 import java.util.Scanner;
 
-public class Problem1455半数单集 {
+public class SzptProblem1455半数单集 {
     private int n;
     private int[] array;
     private int result = 0;
     private boolean[] visited;
 
     public static void main(String[] args){
-        Problem1455半数单集 problem1455 = new Problem1455半数单集();
+        SzptProblem1455半数单集 problem1455 = new SzptProblem1455半数单集();
         problem1455.Input();
     }
 
