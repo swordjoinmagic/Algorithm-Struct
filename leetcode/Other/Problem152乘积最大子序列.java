@@ -2,11 +2,11 @@ package leetcode.Other;
 
 /**
  * 思路：
- *      1. 设f[i]为以i为截止的乘积最大的连续子序列和
+ *      1. 设f[i]为以下标i为截止的乘积最大的连续子序列
  *
  *      f[i] = max(f[i-1]*A[i],A[i])
  *
- *      设minF[i]为以i为截止的乘积最小的连续子序列和
+ *      设minF[i]为以下标i为截止的乘积最小的连续子序列
  *
  *      minF[i] = minF(minF[i-1]*A[i],A[i]);
  */
@@ -38,7 +38,8 @@ public class Problem152乘积最大子序列 {
                 f[i] = Math.max(f[i-1]*array[i],array[i]);
                 minF[i] = Math.min(minF[i-1]*array[i],array[i]);
             }else{
-                // 当前数<0时,表示乘上这个数,最大数会变成最小数,最小数会变成最大数
+                // 当前数<0时,表示乘上这个数,
+                // 最大数会变成最小数,最小数会变成最大数
                 // 下面进行翻转
                 f[i] = Math.max(minF[i-1]*array[i],array[i]);
                 minF[i] = Math.min(f[i-1]*array[i],array[i]);
