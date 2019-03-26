@@ -8,7 +8,7 @@ public class Problem75颜色分类 {
 
     public static void main(String[] args){
         Problem75颜色分类 problem75 = new Problem75颜色分类();
-        int[] nums = new int[]{2,0,2,1,1,0};
+        int[] nums = new int[]{1,0,0};
         problem75.sortColorsOnce(nums);
         for(int data : nums){
             System.out.print(data+" ");
@@ -28,28 +28,22 @@ public class Problem75颜色分类 {
     }
 
     public void sortColorsOnce(int[] nums){
-        int start = 0;
-        int end = nums.length-1;
-
+        if(nums.length==0 || nums.length==1) return;
+        // 一次遍历,如果是0,移动到表头,如果是2,移动到表尾
         int startIndex = 0;
-        int endIndex=  nums.length-1;
+        int endIndex = nums.length-1;
 
-        while (start<end){
-            // 从前往后找2
-            while (start<end && nums[start]!=2) start++;
-            if(start<end) {
-                swap(nums, start, endIndex);
+        int i = 0;
+        while (i<=endIndex && startIndex<=endIndex){
+            if(nums[i]==2){
+                swap(nums,i,endIndex);
                 endIndex--;
-            }
-
-            // 从后往前找0
-            while (start<end && nums[end]!=0) end--;
-            if(start<end) {
-                swap(nums, end, startIndex);
+            }else if(nums[i]==0){
+                swap(nums,i,startIndex);
                 startIndex++;
-            }
+            }else
+                i++;
         }
-
     }
 
     private void swap(int[] nums,int i,int j){
