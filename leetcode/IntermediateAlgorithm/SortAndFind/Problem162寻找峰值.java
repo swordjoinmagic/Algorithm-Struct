@@ -21,66 +21,36 @@ public class Problem162寻找峰值 {
 
     public int findPeakElement(int[] nums) {
         if(nums.length==0) return 0;
-        return SearchPeekNumber(0,nums.length-1,nums);
+        return SearchPeekNumber(nums);
     }
 
     /**
-     * 查找从序列下标为start(包含)开始到end结束(包含)的峰值
+     * 二分法
      *
-     * 找不到峰值的情况返回-1
+     * 如果 A[mid+1] > A[mid]说明峰值在右边
+     * 否则峰值在左边
      *
      * 返回值为峰值的下标
-     * @param start
-     * @param end
+     *
      * @param nums
      */
-    public int SearchPeekNumber(int start,int end,int[] nums){
-
-        if(start<0 || end>=nums.length || (start+end+1)/2>=nums.length) return 0;
-
-        // 得到序列中值
-        int middle = (start+end+1)/2;
-        int middleValue = nums[middle];
-
-        // 获得中值左边的值
-        int leftValue;
-        // 越界判断,越界时,默认为负无穷
-        if(middle-1<start)
-            leftValue = Integer.MIN_VALUE;
-        else
-            leftValue = nums[middle-1];
-
-        // 获得中值右边的值
-        int rightValue;
-        // 越界判断,默认为负无穷
-        if(middle+1>end)
-            rightValue = Integer.MIN_VALUE;
-        else
-            rightValue = nums[middle+1];
-
-        // 如果左值和右值均小于当前值,那么当前值是峰值
-        if(leftValue<middleValue && rightValue<middleValue){
-            return middle;
-        }else if(leftValue<middleValue){
-            // 如果左值小于中值,那么左值不可能是峰值,可跳过
-
-            // 左边递归
-            int nextLeftValue = SearchPeekNumber(0,middle-2,nums);
-            // 右边递归
-            int nextRightValue = SearchPeekNumber(middle+1,end,nums);
-
-            return nextLeftValue>nextRightValue ? nextLeftValue : nextRightValue;
-        }else if(rightValue<middleValue){
-            // 如果右值小于中值,那么右值不可能是峰值,可跳过
-
-            // 左边递归
-            int nextLeftValue = SearchPeekNumber(0,middle-1,nums);
-            // 右边递归
-            int nextRightValue = SearchPeekNumber(middle+2,end,nums);
-
-            return nextLeftValue>nextRightValue ? nextLeftValue : nextRightValue;
+    public int SearchPeekNumber(int[] nums){
+        int start = 0;
+        int end = nums.length-1;
+        while (start<=end){
+            int mid = start + (end-start)/2;
+            int midValue;
+            if(mid<0 || mid>=nums.length) midValue = Integer.MIN_VALUE;
+            else midValue = nums[mid];
+            int rightValue;
+            if(mid+1<0 || mid+1>=nums.length) rightValue = Integer.MIN_VALUE;
+            else rightValue = nums[mid+1];
+            if(midValue<rightValue){
+                start = mid+1;
+            }else {
+                end = mid-1;
+            }
         }
-
-        return 0;
+        return start;
     }
 }
