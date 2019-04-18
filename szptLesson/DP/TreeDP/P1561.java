@@ -48,6 +48,14 @@ public class P1561 {
 
             N = in.nextInt();
 
+            if(N==0){
+                System.out.println("0");
+                continue;
+            }else if(N==1){
+                System.out.println("1");
+                continue;
+            }
+
             graph = new ArrayList[N];
 
             // isParent[i]表示i是否是根节点,true为是,false为不是
