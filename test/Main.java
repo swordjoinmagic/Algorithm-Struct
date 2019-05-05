@@ -1,9 +1,15 @@
 package test;
 
+import java.io.FileInputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]) {
+
+
+
+
         Scanner cin = new Scanner(System.in);
         int n = cin.nextInt();
         int[] arr = new int[2 * n];
