@@ -45,5 +45,7 @@ public class Problem498对角线遍历 {
             // 层数+1
             layers++;
         }
+
+        return null;
     }
 }

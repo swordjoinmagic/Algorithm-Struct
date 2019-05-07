@@ -1,4 +1,4 @@
-package szptLesson.higherStruct.LineTree.UnionAndFindSet;
+package szptLesson.higherStruct.UnionAndFindSet;
 
 import java.util.Arrays;
 import java.util.Scanner;
