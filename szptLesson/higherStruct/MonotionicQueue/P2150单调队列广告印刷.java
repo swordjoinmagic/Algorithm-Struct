@@ -1,9 +1,8 @@
 package szptLesson.higherStruct.MonotionicQueue;
 
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 /**
  * 思路:
@@ -18,7 +17,7 @@ import java.util.Scanner;
  */
 public class P2150单调队列广告印刷 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         P2150单调队列广告印刷 p2150 = new P2150单调队列广告印刷();
         p2150.Input();
         p2150.Slove();
@@ -30,17 +29,20 @@ public class P2150单调队列广告印刷 {
     int[] h;
     int n;
 
-    public void Input(){
-        try {
-            System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\E\\1in.txt"));
-        }catch (Exception e){}
+    public void Input() throws IOException {
+//        Scanner in = new Scanner(System.in);
 
-        Scanner in = new Scanner(System.in);
-        n = in.nextInt();
+        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+
+        in.nextToken();
+        n = (int)in.nval;
         h = new int[n];
         Lcount = new int[n];
         Rcount = new int[n];
-        for(int i=0;i<n;i++) h[i] = in.nextInt();
+        for(int i=0;i<n;i++) {
+            in.nextToken();
+            h[i] = (int)in.nval;
+        }
     }
 
     // 从左往右扫一遍,获得建筑物i左边高度比他大的建筑物数量

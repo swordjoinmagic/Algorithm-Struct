@@ -2,17 +2,16 @@ package test;
 
 import java.io.FileInputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]) {
-
-        Scanner cin = new Scanner(System.in);
-        int n = cin.nextInt();
-        int[] arr = new int[2 * n];
-        insertNum(arr, 1, n);
+       int[] array = {0,1,2,4,5};
+       int index = Arrays.binarySearch(array,3);
+       System.out.println(-(index) - 1);
     }
 
 

@@ -16,7 +16,7 @@ public class MergeSort extends BaseSort<Integer> {
     /**
      * (条件begin1<begin2)
      * 一次归并,将X数组中的[begin1,begin1+n-1]的无序元素
-     * 和Y数组中的[begin2,begin2+n-1]的无序元素合并为
+     * 和X数组中的[begin2,begin2+n-1]的无序元素合并为
      * 一个有序序列,放到Y数组的[begin1,begin1+n+n-1]位置上去
      * @param X
      * @param Y
