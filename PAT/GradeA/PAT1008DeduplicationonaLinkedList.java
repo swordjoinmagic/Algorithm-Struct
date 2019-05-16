@@ -1,5 +1,9 @@
 package PAT.GradeA;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StreamTokenizer;
 import java.util.*;
 
 /**
@@ -18,10 +22,14 @@ import java.util.*;
  *      把被删除的节点串起来就好了
  *
  *      时间复杂度O(N)
+ *
+ * 坑:
+ *      1. 删除其中的所有重复节点,即所有重复节点只能出现一次.
+ *      而不是只有一个重复节点,被测试数据带坑里去了
  */
 public class PAT1008DeduplicationonaLinkedList {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         PAT1008DeduplicationonaLinkedList pat1008 = new PAT1008DeduplicationonaLinkedList();
         pat1008.Input();
     }
@@ -30,9 +38,6 @@ public class PAT1008DeduplicationonaLinkedList {
     String initalAdress;
     // 节点数量
     int N;
-
-    // 重复数字
-    int deduplicationKey;
 
     // 临时用来找重复数字的
     Set<Integer> set = new HashSet<>();
@@ -62,47 +67,44 @@ public class PAT1008DeduplicationonaLinkedList {
     // 临时存放被删除节点
     List<Node> removeList = new ArrayList<>();
 
-    public void Input(){
-        Scanner in = new Scanner(System.in);
-        initalAdress = in.next();
-        N = in.nextInt();
+    public void Input() throws IOException {
+//        Scanner in = new Scanner(System.in);
+        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
+
+        in.nextToken();
+        initalAdress = String.format("%05d",(int)in.nval);
+        in.nextToken();
+        N = (int) in.nval;
 
         linkList = new HashMap<>();
         // 为了方便起见,将-1定义为Null
         linkList.put("-1",null);
+        // 无意义的头指针,方便后续计算
+        Node head = new Node("root",0, initalAdress);
+        linkList.put("root",head);
 
         for(int i=0;i<N;i++){
-            String address = in.next();
-            int val = in.nextInt();
-            String nextAddress = in.next();
+            in.nextToken();
+            String address = String.format("%05d",(int)in.nval);
+            in.nextToken();
+            int val = (int)in.nval;
+            in.nextToken();
+            String nextAddress = (int)in.nval==-1? "-1" : String.format("%05d",(int)in.nval);
             Node node = new Node(address,val,nextAddress);
             linkList.put(address,node);
-
-            if(set.contains(Math.abs(val))){
-                deduplicationKey = Math.abs(val);
-            }else {
-                set.add(Math.abs(val));
-            }
         }
 
         Slove();
     }
 
     public void Slove(){
-        // 遍历链表,将重复数字删掉(保留第一个遇到的)
-        Node node = linkList.get(initalAdress);
-
-        // 先来到第一个遇到的重复数字处，从该处向下，
-        // 每遇到一个重复数字节点就删除
-        while (Math.abs(node.val)!=deduplicationKey)
-            node = linkList.get(node.next);
-
         // 从node处向下，每遇到一次重复数字，就进行删除
-        Node preNode = node;    // 上一个节点
-        Node currentNode = linkList.get(node.next); // 当前操作的节点
+        Node preNode = linkList.get("root");    // 上一个节点
+        Node currentNode = linkList.get(initalAdress); // 当前操作的节点
         while (currentNode!=null){
-            // 当前节点是要删除的节点
-            while (currentNode!=null && Math.abs(currentNode.val)==deduplicationKey){
+
+            // 当前节点是要删除的节点(即第二次以后出现重复节点)
+            while (currentNode!=null && set.contains(Math.abs(currentNode.val))){
                 // 上一个节点指向当前节点的下一个节点
                 preNode.next = currentNode.next;
 
@@ -115,6 +117,11 @@ public class PAT1008DeduplicationonaLinkedList {
                 // currentNode节点向下移动
                 currentNode = linkList.get(preNode.next);
             }
+
+            // 将当前操作的节点的数加入集合
+            if(currentNode!=null)
+                set.add(Math.abs(currentNode.val));
+
             // 两个节点都向下移动
             preNode = linkList.get(preNode.next);
             currentNode = preNode==null ? null : linkList.get(preNode.next);
