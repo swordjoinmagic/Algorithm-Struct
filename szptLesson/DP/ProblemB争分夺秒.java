@@ -1,8 +1,6 @@
 package szptLesson.DP;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.*;
 
 /**
  *
@@ -31,7 +29,22 @@ import java.util.Scanner;
  */
 public class ProblemB争分夺秒 {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    // 优化输入
+    class Scanner{
+
+        StreamTokenizer in;
+
+        public Scanner(InputStream inputStream){
+            in = new StreamTokenizer(new BufferedReader(new InputStreamReader(inputStream)));
+        }
+
+        public int nextInt() throws IOException {
+            in.nextToken();
+            return (int) in.nval;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
         ProblemB争分夺秒 problemB = new ProblemB争分夺秒();
         problemB.Input();
     }
@@ -46,9 +59,9 @@ public class ProblemB争分夺秒 {
     // 每个碎片的起始位移
     int[] distance;
 
-    public void Input() throws FileNotFoundException {
+    public void Input() throws IOException {
 
-        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\B\\7in.txt"));
+        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\B\\1in.txt"));
 
         Scanner in = new Scanner(System.in);
         while (true) {

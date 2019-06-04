@@ -1,10 +1,8 @@
 package szptLesson.higherStruct.SuffixTree;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * 思路：
@@ -42,7 +40,27 @@ import java.util.Scanner;
  */
 public class Cinderella {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    // 优化输入
+    class Scanner{
+
+        StreamTokenizer in;
+
+        public Scanner(InputStream inputStream){
+            in = new StreamTokenizer(new BufferedReader(new InputStreamReader(inputStream)));
+        }
+
+        public int nextInt() throws IOException {
+            in.nextToken();
+            return (int) in.nval;
+        }
+
+        public String next() throws IOException {
+            in.nextToken();
+            return in.sval;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
         Cinderella cinderella = new Cinderella();
         cinderella.Input();
     }
@@ -64,8 +82,8 @@ public class Cinderella {
     // 用于存储单词的数组
     String[] words;
 
-    public void Input() throws FileNotFoundException {
-        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\C\\7in.txt"));
+    public void Input() throws IOException {
+        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\C\\1in.txt"));
         Scanner in = new Scanner(System.in);
         while (true){
             n = in.nextInt();

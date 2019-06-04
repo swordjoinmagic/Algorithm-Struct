@@ -18,10 +18,13 @@ public class LongestRepeatingSubstring重复模式 {
     String[] array;
 
     public void Input() throws FileNotFoundException {
-        System.setIn(new FileInputStream("D:\\我的文档\\WeChat Files\\wxid_pqm163cfpg4x52\\FileStorage\\File\\2019-05\\testData.txt"));
+        System.setIn(new FileInputStream("D:\\我的文档\\WeChat Files\\wxid_pqm163cfpg4x52\\FileStorage\\File\\2019-05\\RSDATA.txt"));
         Scanner in = new Scanner(System.in);
-        str = in.next();
-        Slove();
+        while (in.hasNext()) {
+            str = in.next();
+            System.out.println("strLength："+str.length());
+            Slove();
+        }
     }
 
     public int GetCommondPreffix(String s1,String s2){
@@ -44,7 +47,7 @@ public class LongestRepeatingSubstring重复模式 {
             max = Math.max(max,GetCommondPreffix(array[i],array[i+1]));
         }
 
-        System.out.print(max);
+        System.out.println(max);
     }
 
     // 创建后缀数组

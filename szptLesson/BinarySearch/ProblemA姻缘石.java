@@ -1,7 +1,6 @@
 package szptLesson.BinarySearch;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -42,7 +41,22 @@ import java.util.*;
  */
 public class ProblemA姻缘石 {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    // 优化输入
+    class Scanner{
+
+        StreamTokenizer in;
+
+        public Scanner(InputStream inputStream){
+            in = new StreamTokenizer(new BufferedReader(new InputStreamReader(inputStream)));
+        }
+
+        public int nextInt() throws IOException {
+            in.nextToken();
+            return (int) in.nval;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
         ProblemA姻缘石 problemA = new ProblemA姻缘石();
         problemA.Input();
     }
@@ -55,8 +69,7 @@ public class ProblemA姻缘石 {
     // 石头
     List<Integer> stones = new ArrayList<>();
 
-    public void Input() throws FileNotFoundException {
-        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\A\\1in.txt"));
+    public void Input() throws IOException {
         Scanner in = new Scanner(System.in);
 
         while (true){
@@ -98,7 +111,7 @@ public class ProblemA姻缘石 {
         Collections.sort(stones);
 
         // 固定其中一个对另一进行二分查找
-        for(int i=0;i<stones.size()-2;i++){
+        for(int i=0;i<stones.size()-1;i++){
             int a = stones.get(i);
 
             // 二分查找正好 <= L-1-a 的数

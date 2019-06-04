@@ -13,7 +13,7 @@ package leetcode.IntermediateAlgorithm.array;
 public class Problem5最长回文子串 {
 
     public static void main(String[] args){
-        String s = "abcba";
+        String s = "ggwethvfluqxbymchjyveocokrbetdt txuxlchiixpyepdqgpuyzqmyqhvucmo kuommm orampylmeihlqzxx zzkwkjwnmhmaveslnruedddnatfrlgsxyyvfpluwdukaadggugdhgl g xwtpyglttdbjgqwkhgfgb jwltlzpctknhfbi coomzefuufpqbhve uaviuqaehqnimgj ljrhgxgwadfor cliidwzifanzoomahtfkitiqexpogrpcsmzppqqxva seikiczujtkidpwlngvqrzfc biqrjgzojdfqpwnkvn adkxhubgqqgbuhxkda nvknwpqfdjozgjrqib cfzrqvgnlwpdiwmaoesgadddntqoqjqwmkbdzfpbxowzygynvezdnnvjzqerzgvgpfzkllsccd clmrlpqhadlmdwqiaaqnhzgrswxuadwxmnmsgnyhfliklfaaw esifbkoszysw i ucwzjkkdwnaochfekhmiefcazelnugugngjydpghuxfnqldclpwkzmwfslvvmhimdkymnybmfexgtv yegcgrhfcfihro uhzvssnfogiotoxprozslstxj aiulrbxnwhnaitzzdmpjayrgpenmyawbvdjbcb";
         Problem5最长回文子串 problem5 = new Problem5最长回文子串();
         String result = problem5.longestPalindrome(s);
         System.out.println(result);
@@ -66,7 +66,7 @@ public class Problem5最长回文子串 {
                     }
                 }
 
-                print(p,s.length());
+//                print(p,s.length());
                 System.out.println();
             }
         }

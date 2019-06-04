@@ -1,6 +1,6 @@
 package szptLesson.higherStruct.LineTree;
 
-import java.util.Scanner;
+import java.io.*;
 
 /**
  * 思路:
@@ -8,7 +8,22 @@ import java.util.Scanner;
  */
 public class ProblemD炒股王面试 {
 
-    public static void main(String[] args){
+    // 优化输入
+    class Scanner{
+
+        StreamTokenizer in;
+
+        public Scanner(InputStream inputStream){
+            in = new StreamTokenizer(new BufferedReader(new InputStreamReader(inputStream)));
+        }
+
+        public int nextInt() throws IOException {
+            in.nextToken();
+            return (int) in.nval;
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
         ProblemD炒股王面试 problemD = new ProblemD炒股王面试();
         problemD.Input();
     }
@@ -38,7 +53,8 @@ public class ProblemD炒股王面试 {
 
     int[] array;
 
-    public void Input(){
+    public void Input() throws IOException {
+        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\D\\7in.txt"));
         Scanner in = new Scanner(System.in);
         N = in.nextInt();
         M = in.nextInt();
@@ -108,7 +124,36 @@ public class ProblemD炒股王面试 {
         }
     }
 
-    public void Slove(Scanner in){
+    /**
+     * 查询区间[l,r]的最大值
+     * @param node 当前区间
+     * @param l
+     * @param r
+     * @return
+     */
+    public int QueryMax(TreeNode node,int l,int r){
+        int mid = (node.l+ node.r)/2;
+
+        if(node.l>=l && node.r<=r){
+            return node.max;
+        }
+
+        if(r<=mid){
+            // 要查询的区间在当前区间的左边
+            return QueryMax(node.leftChild,l,r);
+        }else if(l>mid){
+            // 要查询的区间在当前区间的右边
+            return QueryMax(node.rightChild,l,r);
+        }else {
+            // 要查询的区间在当前区间的中间
+            int leftSum = QueryMax(node.leftChild,l,mid);
+            int rightSum = QueryMax(node.rightChild,mid+1,r);
+
+            return Math.max(leftSum,rightSum);
+        }
+    }
+
+    public void Slove(Scanner in) throws IOException {
 
         // 建立线段树
         TreeNode root = BuildLineTree(0,N-1);
@@ -120,6 +165,8 @@ public class ProblemD炒股王面试 {
             switch (command){
                 case 1:
                     // 查最大值
+                    int max = QueryMax(root,a,b);
+                    System.out.println(max);
                     break;
                 case 2:
                     // 查和值
