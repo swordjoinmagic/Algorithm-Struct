@@ -15,12 +15,30 @@ import java.util.LinkedList;
  *
  *      时间复杂度O(N)
  */
-public class P2150单调队列广告印刷 {
+public class ProblemE单调队列广告印刷 {
+
+    public String ID = "16240011";
+    public String Problem = "E";
 
     public static void main(String[] args) throws IOException {
-        P2150单调队列广告印刷 p2150 = new P2150单调队列广告印刷();
+        ProblemE单调队列广告印刷 p2150 = new ProblemE单调队列广告印刷();
         p2150.Input();
         p2150.Slove();
+    }
+
+    // 优化输入
+    class Scanner{
+
+        StreamTokenizer in;
+
+        public Scanner(InputStream inputStream){
+            in = new StreamTokenizer(new BufferedReader(new InputStreamReader(inputStream)));
+        }
+
+        public int nextInt() throws IOException {
+            in.nextToken();
+            return (int) in.nval;
+        }
     }
 
     // Lcount[i]=x表示建筑物i左边有x个建筑物高度大于等于h[i]
@@ -30,18 +48,14 @@ public class P2150单调队列广告印刷 {
     int n;
 
     public void Input() throws IOException {
-//        Scanner in = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
-        StreamTokenizer in = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
-
-        in.nextToken();
-        n = (int)in.nval;
+        n = in.nextInt();
         h = new int[n];
         Lcount = new int[n];
         Rcount = new int[n];
         for(int i=0;i<n;i++) {
-            in.nextToken();
-            h[i] = (int)in.nval;
+            h[i] = in.nextInt();
         }
     }
 

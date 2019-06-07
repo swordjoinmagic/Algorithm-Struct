@@ -8,6 +8,9 @@ import java.io.*;
  */
 public class ProblemD炒股王面试 {
 
+    public String ID = "16240011";
+    public String Problem = "D";
+
     // 优化输入
     class Scanner{
 
@@ -54,7 +57,6 @@ public class ProblemD炒股王面试 {
     int[] array;
 
     public void Input() throws IOException {
-        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\D\\7in.txt"));
         Scanner in = new Scanner(System.in);
         N = in.nextInt();
         M = in.nextInt();

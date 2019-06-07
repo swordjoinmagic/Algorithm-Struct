@@ -29,6 +29,9 @@ import java.io.*;
  */
 public class ProblemB争分夺秒 {
 
+    public String ID = "16240011";
+    public String Problem = "B";
+
     // 优化输入
     class Scanner{
 
@@ -60,9 +63,6 @@ public class ProblemB争分夺秒 {
     int[] distance;
 
     public void Input() throws IOException {
-
-        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\B\\1in.txt"));
-
         Scanner in = new Scanner(System.in);
         while (true) {
             n = in.nextInt();

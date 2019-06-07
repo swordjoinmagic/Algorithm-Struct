@@ -41,6 +41,9 @@ import java.util.*;
  */
 public class ProblemA姻缘石 {
 
+    public String ID = "16240011";
+    public String Problem = "A";
+
     // 优化输入
     class Scanner{
 

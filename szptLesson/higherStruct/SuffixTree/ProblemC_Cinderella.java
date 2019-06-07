@@ -38,7 +38,10 @@ import java.util.Map;
  *   找后缀的时间复杂度为O(m),m是节点数
  *
  */
-public class Cinderella {
+public class ProblemC_Cinderella {
+
+    public String ID = "16240011";
+    public String Problem = "C";
 
     // 优化输入
     class Scanner{
@@ -61,7 +64,7 @@ public class Cinderella {
     }
 
     public static void main(String[] args) throws IOException {
-        Cinderella cinderella = new Cinderella();
+        ProblemC_Cinderella cinderella = new ProblemC_Cinderella();
         cinderella.Input();
     }
 
@@ -83,7 +86,6 @@ public class Cinderella {
     String[] words;
 
     public void Input() throws IOException {
-        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\C\\1in.txt"));
         Scanner in = new Scanner(System.in);
         while (true){
             n = in.nextInt();
