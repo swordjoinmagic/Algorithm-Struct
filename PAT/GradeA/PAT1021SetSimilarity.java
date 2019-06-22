@@ -20,14 +20,13 @@ public class PAT1021SetSimilarity {
     // 询问次数
     int K;
 
-    List<Set<Integer>> list;
+    Set<Integer>[] list;
 
     public void Input(){
         Scanner in = new Scanner(System.in);
         N = in.nextInt();
 
-        list = new ArrayList<>();
-        list.add(null);
+        list = new HashSet[N+1];
 
         for(int i=0;i<N;i++){
             int m = in.nextInt();
@@ -38,7 +37,7 @@ public class PAT1021SetSimilarity {
                 l.add(in.nextInt());
             }
 
-            list.add(l);
+            list[i+1] = l;
         }
 
         K = in.nextInt();
@@ -50,19 +49,26 @@ public class PAT1021SetSimilarity {
     }
 
     public void Slove(int s1,int s2){
-        Set<Integer> set1 = list.get(s1);
-        Set<Integer> set2 = list.get(s2);
+        Set<Integer> set1 = list[s1];
+        Set<Integer> set2 = list[s2];
 
-        // 并集
-        Set<Integer> union = new HashSet<>(set1);
-        union.addAll(set2);
+        Map<Integer,Boolean> map2 = new HashMap<>();
 
         // 交集
-        Set<Integer> intersection = new HashSet<>(set1);
-        intersection.retainAll(set2);
+        int intersectCount = 0;
 
-        double result = ((double) intersection.size() / union.size()) * 100;
+        for(int number : set2){
+            if(set1.contains(number) && !map2.getOrDefault(number,false)){
+                map2.put(number,true);
+                intersectCount++;
+            }
+        }
+        // 并集
+        int unionCount = set1.size()+set2.size()-intersectCount; // 并集数量
 
-        System.out.format("%.1f%%",result);
+
+        double result = ((double) intersectCount / unionCount) * 100;
+
+        System.out.format("%.1f%%\n",result);
     }
 }

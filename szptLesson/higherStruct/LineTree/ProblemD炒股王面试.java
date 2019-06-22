@@ -1,6 +1,7 @@
 package szptLesson.higherStruct.LineTree;
 
 import java.io.*;
+import java.util.Timer;
 
 /**
  * 思路:
@@ -27,8 +28,11 @@ public class ProblemD炒股王面试 {
     }
 
     public static void main(String[] args) throws IOException {
+        long time = System.currentTimeMillis();
         ProblemD炒股王面试 problemD = new ProblemD炒股王面试();
         problemD.Input();
+        System.out.println((System.currentTimeMillis()-time)+"ms");
+
     }
 
     class TreeNode{
@@ -57,6 +61,8 @@ public class ProblemD炒股王面试 {
     int[] array;
 
     public void Input() throws IOException {
+        System.setIn(new FileInputStream("C:\\Users\\Administrator\\Downloads\\testdata\\D\\7in.txt"));
+//        System.setOut(new PrintStream("C:\\Users\\Administrator\\Desktop\\testData2.txt"));
         Scanner in = new Scanner(System.in);
         N = in.nextInt();
         M = in.nextInt();
