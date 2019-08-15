@@ -86,7 +86,7 @@ public class P1568亲属关系 {
             int fx = Find(ai);
             int fy = Find(bi);
 
-            System.out.println(fx==fy);
+            System.out.println(fx==fy?"Yes":"No");
         }
     }
 }

@@ -1,5 +1,7 @@
 package leetcode.Other;
 
+import java.util.Scanner;
+
 /**
  * 思路：
  *      1. 设f[i]为以下标i为截止的乘积最大的连续子序列
@@ -12,10 +14,23 @@ package leetcode.Other;
  */
 public class Problem152乘积最大子序列 {
 
+    int N;
+    int[] array;
+
     public static void main(String[] args){
         Problem152乘积最大子序列 problem152 = new Problem152乘积最大子序列();
-        int reuslt =  problem152.maxProduct(new int[]{1,2,-1,-2,2,1,-2,1,4,-5,4});
-        System.out.println(reuslt);
+        problem152.Input();
+    }
+
+    public void Input(){
+        Scanner in = new Scanner(System.in);
+        N = in.nextInt();
+        array = new int[N];
+        for(int i=0;i<N;i++){
+            array[i] = in.nextInt();
+        }
+
+        System.out.print(maxProduct(array));
     }
 
     public int maxProduct(int[] array) {

@@ -11,10 +11,10 @@ import java.util.*;
  *      3. 使用Djkstra寻找最短路径
  *      4. 设 minDistance[x]=y 表示从起始节点到x节点处最短距离是y
  *      5. 更新最短路径的同时，要更新快乐值和经过的城市数，更新方法如下:
- *          maxHappenes[i] = maxHappenees[k] + happeness[i];
+ *          maxHappenes[i] = maxHappenees[key] + happeness[i];
  *      表示从起始节点到i节点时获得的最大快乐值是节点k的最大快乐值+节点i的最大快乐值
  *      更新经过城市数同理.
- *      6. 设 pre[i]=k, 表示 经过i节点的最短路径的上一个节点为k
+ *      6. 设 pre[i]=key, 表示 经过i节点的最短路径的上一个节点为k
  *
  */
 public class PAT1002AllRoadsLeadtoRome {
