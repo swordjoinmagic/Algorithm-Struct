@@ -4,8 +4,15 @@ import java.util.*;
 
 /**
  * 题意:
- *      1. 多关键词排序.
+ *      1. 给定学生的ECMA成绩,求各个学生的最佳成绩.
+ *      最佳成绩定义为该学生排名最前的学科的成绩,如果有多个排名相同的学科,
+ *      那么选优先级高的
  *
+ * 坑:
+ *      1. 排序规则!
+ *      对于 99 99 98
+ *      排名 1  1  3
+ *      其中第二个99排名不是2,第三个98排名也不是2,连环巨坑
  */
 public class PAT1012TheBestRank_25point {
 
@@ -20,6 +27,8 @@ public class PAT1012TheBestRank_25point {
 
         public String bestSubject;
         public int bestRank = Integer.MAX_VALUE;
+
+        public int rankA,rankE,rankC,rankM;
 
         public Student(String id,int C,int M,int E){
             this.id = id;
@@ -67,14 +76,23 @@ public class PAT1012TheBestRank_25point {
                     return 0;
             }
         });
-        int rank1 = 0;
-        for(int i=0;i<N;i++) {
-            if(i==0 || students[i].A != students[i-1].A) rank1++;
-            if(rank1<students[i].bestRank){
-                students[i].bestRank = rank1;
+
+        for(int i=0;i<N;i++){
+            // 第一步,得到当前students[i]的排名
+            int rank = i+1; // 正常情况下i所在的排名
+            // 如果当前i与i-1的A相等,那么说明i和i-1的排名相同
+            if(i!=0 && students[i].A == students[i-1].A)
+                rank = students[i-1].rankA;
+
+            students[i].rankA = rank;
+
+            // 判断当前排名是否比最佳排名靠前,如果靠前,那么替换掉最佳排名
+            if(rank<students[i].bestRank){
+                students[i].bestRank = rank;
                 students[i].bestSubject = "A";
             }
         }
+
 
         // 排序C
         Arrays.sort(students,new Comparator<Student>(){
@@ -90,11 +108,18 @@ public class PAT1012TheBestRank_25point {
         });
 
 
-        int rank2 = 0;
-        for(int i=0;i<N;i++) {
-            if(i==0 || students[i].C != students[i-1].C) rank2++;
-            if(rank2<students[i].bestRank){
-                students[i].bestRank = rank2;
+        for(int i=0;i<N;i++){
+            // 第一步,得到当前students[i]的排名
+            int rank = i+1; // 正常情况下i所在的排名
+            // 如果当前i与i-1的A相等,那么说明i和i-1的排名相同
+            if(i!=0 && students[i].C == students[i-1].C)
+                rank = students[i-1].rankC;
+
+            students[i].rankC = rank;
+
+            // 判断当前排名是否比最佳排名靠前,如果靠前,那么替换掉最佳排名
+            if(rank<students[i].bestRank){
+                students[i].bestRank = rank;
                 students[i].bestSubject = "C";
             }
         }
@@ -111,11 +136,18 @@ public class PAT1012TheBestRank_25point {
                     return 0;
             }
         });
-        int rank3 = 0;
-        for(int i=0;i<N;i++) {
-            if(i==0 || students[i].M != students[i-1].M) rank3++;
-            if(rank3<students[i].bestRank){
-                students[i].bestRank = rank3;
+        for(int i=0;i<N;i++){
+            // 第一步,得到当前students[i]的排名
+            int rank = i+1; // 正常情况下i所在的排名
+            // 如果当前i与i-1的A相等,那么说明i和i-1的排名相同
+            if(i!=0 && students[i].M == students[i-1].M)
+                rank = students[i-1].rankM;
+
+            students[i].rankM = rank;
+
+            // 判断当前排名是否比最佳排名靠前,如果靠前,那么替换掉最佳排名
+            if(rank<students[i].bestRank){
+                students[i].bestRank = rank;
                 students[i].bestSubject = "M";
             }
         }
@@ -124,19 +156,26 @@ public class PAT1012TheBestRank_25point {
         Arrays.sort(students,new Comparator<Student>(){
             @Override
             public int compare(Student o1,Student o2){
-                if(o1.E>o2.E)
+                if(o1.E > o2.E)
                     return -1;
-                else if(o1.E<o2.E)
+                else if(o1.E < o2.E)
                     return 1;
                 else
                     return 0;
             }
         });
-        int rank4 = 0;
-        for(int i=0;i<N;i++) {
-            if(i==0 || students[i].E != students[i-1].E) rank4++;
-            if(rank4<students[i].bestRank){
-                students[i].bestRank = rank4;
+        for(int i=0;i<N;i++){
+            // 第一步,得到当前students[i]的排名
+            int rank = i+1; // 正常情况下i所在的排名
+            // 如果当前i与i-1的A相等,那么说明i和i-1的排名相同
+            if(i!=0 && students[i].E == students[i-1].E)
+                rank = students[i-1].rankE;
+
+            students[i].rankE = rank;
+
+            // 判断当前排名是否比最佳排名靠前,如果靠前,那么替换掉最佳排名
+            if(rank<students[i].bestRank){
+                students[i].bestRank = rank;
                 students[i].bestSubject = "E";
             }
         }
