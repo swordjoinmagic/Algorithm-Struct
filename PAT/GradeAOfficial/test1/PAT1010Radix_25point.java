@@ -41,20 +41,6 @@ public class PAT1010Radix_25point {
     }
 
     public void Slove(){
-        BigInteger a = null,b = null;
-        if(tag==1) a = new BigInteger(N1,radix);
-        if(tag==2) {a = new BigInteger(N2,radix); N2 = N1;}
 
-        for(int i=2;i<=36;i++){
-            try {
-                b = new BigInteger(N2,i);
-                if(b .compareTo(a)==0 ){
-                    System.out.println(i);
-                    return;
-                }
-            }catch (NumberFormatException e){}
-        }
-
-        System.out.println("Impossible");
     }
 }
