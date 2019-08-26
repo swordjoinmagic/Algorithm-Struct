@@ -29,12 +29,16 @@ public class PAT1007MaximumSubsequenceSum_25point {
     int[] A;
 
     int maxValue = Integer.MIN_VALUE;
-    int right = 0,left;
+    int right = 0,left = 0;
+
+    // 每个最大连续子序列左端点的值
+    int[] lefts;
 
     public void Input(){
         Scanner in = new Scanner(System.in);
         K = in.nextInt();
         A = new int[K];
+        lefts = new int[K];
 
         int[] f = new int[K];
         Arrays.fill(f,Integer.MIN_VALUE);
@@ -45,8 +49,15 @@ public class PAT1007MaximumSubsequenceSum_25point {
                 f[0] = A[0];
                 maxValue = f[0];
                 right = 0;
+                lefts[i] = 0;
             }else {
-                f[i] = f[i-1]+A[i] > A[i] ? f[i-1]+A[i] : A[i];
+                if(f[i-1]+A[i]>=A[i]) {
+                    f[i] =  f[i - 1] + A[i];
+                    lefts[i] = lefts[i-1];
+                }else {
+                    f[i] = A[i];
+                    lefts[i] = i;
+                }
                 if(maxValue<f[i]){
                     maxValue = f[i];
                     right = i;
@@ -58,12 +69,7 @@ public class PAT1007MaximumSubsequenceSum_25point {
 
     public void Slove(){
 
-        int sum;
-        for(sum=0,left=right;sum!=maxValue;left--){
-            sum += A[left];
-        }
-
-        left ++;
+        left = lefts[right];
 
         if(maxValue<0) { left=0;right=K-1;maxValue=0;}
 
