@@ -19,7 +19,13 @@ package PAT.GradeAOfficial.test1;
  *          // k>=C,C为路程消耗,且 k-C <= y
  *          f[x-1][k] + (y-(k-C))*price[x+1]
  *      );
+ *      其中:
+ *          x<=N,
+ *          y<=Cmax
+ *          0<=k<=cMax
  */
 public class PAT1033ToFillorNottoFill_25point {
+    int cMax;
+    int D;
 
 }
